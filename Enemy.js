@@ -5,9 +5,9 @@ export class Enemy {
     this.y = y;
   }
   id = Date.now();
-  width = 34;
-  height = 12;
-  speed = 0.25 + Math.random() * 0.1;
+  width = 20 + Math.random() * 20;
+  height = 5 + Math.random() * 10;
+  speed = 0.3 + Math.random() * 0.15;
   color = 'darkred';
   enemies = [];
   frame = 0;
@@ -63,6 +63,7 @@ export class Enemy {
       const x = Math.floor(Math.random() * (cw - this.width));
       const y = -this.height * 3;
       this.enemies.push(new Enemy(this.game, x, y));
+
       this.frame = this.timeToNextEnemy;
     }
     this.frame--;
