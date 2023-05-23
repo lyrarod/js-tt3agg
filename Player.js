@@ -38,6 +38,7 @@ export class Player {
     const { Bullet, bullet } = this.game;
 
     if ((isShooting || keyPressed.Space) && this.frame <= 0) {
+      this.laser.currentTime = 0;
       this.laser.play();
 
       bullet.add(
