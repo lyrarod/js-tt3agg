@@ -3,10 +3,20 @@ const events = ['touchstart', 'touchend', 'mousedown', 'mouseup', 'click'];
 export class Controls {
   constructor(game) {
     this.game = game;
-
     this.keyPressed = {};
+
     addEventListener('keydown', ({ code }) => (this.keyPressed[code] = true));
     addEventListener('keyup', ({ code }) => (this.keyPressed[code] = false));
+
+    addEventListener('keydown', ({ code }) => {
+      if (this.game.status.game_running) return;
+
+      if (code === 'Enter') {
+        this.game.reset();
+        this.game.start();
+        this.game.screen.gameOver.style.display = 'none';
+      }
+    });
 
     this.reset();
 
@@ -23,14 +33,24 @@ export class Controls {
     this.shoot_btn = document.getElementById('shoot_btn');
     this.left_btn = document.getElementById('left_btn');
     this.right_btn = document.getElementById('right_btn');
+    this.play_btn = document.getElementById('play_btn');
 
     events.forEach((e) => {
+      this.play_btn.addEventListener(e, () => {
+        if (e === 'touchend' || e === 'mouseup') {
+          this.game.reset();
+          this.game.start();
+        }
+      });
+
       this.shoot_btn.addEventListener(e, () => {
         if (e === 'mousedown' || e === 'touchstart') {
+          // console.log('shot');
           this.isShooting = true;
+
           setTimeout(() => {
             this.isShooting = false;
-          });
+          }, 30);
         }
         if (e === 'touchend' || e === 'mouseup') {
           this.isShooting = false;

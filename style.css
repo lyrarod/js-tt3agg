@@ -24,6 +24,7 @@
   color: #111;
   letter-spacing: 1px;
   font-size: 1.25rem;
+  cursor: pointer;
 }
 #game_over {
   position: absolute;
@@ -52,10 +53,13 @@
   bottom: 0;
   width: 100%;
   height: 100%;
+  color: silver;
   background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  row-gap: 16px;
   user-select: none;
 }
 #play_btn {
@@ -67,6 +71,7 @@
   letter-spacing: 1px;
   border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 #hud {
@@ -124,4 +129,9 @@
 
 #control button:active {
   transform: scale(0.97) !important;
+}
+
+#canvas {
+  width: 360px;
+  height: 340px;
 }

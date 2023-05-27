@@ -17,24 +17,22 @@ export class Game {
     this.gameObjects = [];
     this.score = 0;
 
+    this.status = {
+      game_over: false,
+      game_running: false,
+    };
+
     this.scoreEl = document.getElementById('score');
     this.livesEl = document.getElementById('lives');
     this.specialEl = document.getElementById('special');
 
     this.playScreen = document.getElementById('play_screen');
-    this.play_btn = document.getElementById('play_btn');
 
     this.reset();
 
     this.music = new Audio(
       'https://opengameart.org/sites/default/files/Hero%20Immortal.mp3'
     );
-
-    this.play_btn.ontouchend = () => {
-      this.reset();
-      this.start();
-      console.log(this);
-    };
   }
   animation = null;
   Bullet = Bullet;
@@ -43,6 +41,7 @@ export class Game {
     this.loop();
     this.gameObjects = [this.player, this.bullet, this.enemy];
 
+    this.status.game_running = true;
     this.music.play();
     this.music.loop = true;
     this.playScreen.style.display = 'none';
@@ -52,6 +51,8 @@ export class Game {
   update() {
     if (this.player.lives < 0) {
       cancelAnimationFrame(this.animation);
+      this.status.game_over = true;
+      this.status.game_running = false;
       this.control.reset();
       this.screen.gameOverScreen();
       this.music.pause();

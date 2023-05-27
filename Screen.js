@@ -12,6 +12,12 @@ export class Screen {
       this.game.start();
       this.gameOver.style.display = 'none';
     });
+
+    this.playAgainBtn.addEventListener('mouseup', () => {
+      this.game.reset();
+      this.game.start();
+      this.gameOver.style.display = 'none';
+    });
   }
 
   gameOverScreen() {
