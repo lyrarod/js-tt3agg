@@ -7,9 +7,9 @@ export class Bullet {
     this.y = y;
     this.color = color;
   }
-  width = 4;
-  height = 8;
-  speed = 6;
+  width = 2;
+  height = 10;
+  speed = 7;
   bullets = [];
 
   add(bullet) {

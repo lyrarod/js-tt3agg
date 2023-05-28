@@ -57,6 +57,7 @@ export class Game {
       this.screen.gameOverScreen();
       this.music.pause();
       this.music.currentTime = 0;
+      return;
     }
 
     this.gameObjects.forEach((obj) => {
@@ -71,16 +72,16 @@ export class Game {
   }
 
   loop = () => {
-    this.animation = requestAnimationFrame(this.loop);
     this.background();
     this.update();
     this.draw();
+    this.animation = requestAnimationFrame(this.loop);
   };
 
   background() {
     let { ctx, cw, ch } = this;
     ctx.beginPath();
-    ctx.fillStyle = '#0001';
+    ctx.fillStyle = '#0007';
     ctx.fillRect(0, 0, cw, ch);
     ctx.closePath();
   }

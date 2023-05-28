@@ -46,7 +46,7 @@ export class Player {
           this.game,
           this.x + this.width * 0.5 - bullet.width * 0.5,
           this.y - bullet.height,
-          this.color
+          'orangered'
         )
       );
       this.frame = this.timeToNextShoot;
