@@ -5,16 +5,27 @@ export class Controls {
     this.game = game;
     this.keyPressed = {};
 
-    addEventListener('keydown', ({ code }) => (this.keyPressed[code] = true));
-    addEventListener('keyup', ({ code }) => (this.keyPressed[code] = false));
-
     addEventListener('keydown', ({ code }) => {
+      this.keyPressed[code] = true;
+
+      if (this.keyPressed.Space) {
+        this.isShooting = true;
+      }
+
       if (this.game.status.game_running) return;
 
       if (code === 'Enter') {
         this.game.reset();
         this.game.start();
         this.game.screen.gameOver.style.display = 'none';
+      }
+    });
+
+    addEventListener('keyup', ({ code }) => {
+      this.keyPressed[code] = false;
+
+      if (!this.keyPressed.Space) {
+        this.isShooting = false;
       }
     });
 

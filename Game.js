@@ -72,10 +72,10 @@ export class Game {
   }
 
   loop = () => {
-    this.background();
-    this.update();
-    this.draw();
     this.animation = requestAnimationFrame(this.loop);
+    this.background();
+    this.draw();
+    this.update();
   };
 
   background() {

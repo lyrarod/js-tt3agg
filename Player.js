@@ -37,7 +37,7 @@ export class Player {
     const { isShooting, moveLeft, moveRight, keyPressed } = this.game.control;
     const { Bullet, bullet } = this.game;
 
-    if ((isShooting || keyPressed.Space) && this.frame <= 0) {
+    if (isShooting && this.frame <= 0) {
       this.laser.currentTime = 0;
       this.laser.play();
 
