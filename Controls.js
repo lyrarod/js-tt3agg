@@ -12,6 +12,8 @@ export class Controls {
         this.isShooting = true;
       }
 
+      console.log(this.keyPressed);
+
       if (this.game.status.game_running) return;
 
       if (code === 'Enter') {
@@ -27,6 +29,10 @@ export class Controls {
       if (!this.keyPressed.Space) {
         this.isShooting = false;
       }
+
+      delete this.keyPressed[code];
+
+      console.log(this.keyPressed);
     });
 
     this.reset();
