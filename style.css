@@ -90,8 +90,11 @@
 }
 
 #game {
-  background: #000;
+  width: auto;
+  height: 100%;
+  background: #121212;
   box-shadow: 0 0 16px #0003;
+  overflow: hidden;
 }
 
 #app {
@@ -105,7 +108,7 @@
 #control {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0.5rem 0;
+  padding: 1rem;
 }
 
 #control button {
@@ -132,6 +135,6 @@
 }
 
 #canvas {
-  width: 360px;
-  height: 340px;
+  /* width: 360px;
+  height: 340px; */
 }

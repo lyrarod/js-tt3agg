@@ -4,8 +4,14 @@ export class Screen {
     this.game = game;
 
     this.gameOver = document.getElementById('game_over');
-    this.playAgainBtn = document.getElementById('play_again_btn');
     this.gameOverScore = document.getElementById('go_score');
+    this.playScreen = document.getElementById('play_screen');
+
+    this.scoreEl = document.getElementById('score');
+    this.livesEl = document.getElementById('lives');
+    this.specialEl = document.getElementById('special');
+
+    this.playAgainBtn = document.getElementById('play_again_btn');
 
     this.playAgainBtn.addEventListener('touchend', () => {
       this.game.reset();

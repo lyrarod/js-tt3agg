@@ -22,18 +22,14 @@ export class Game {
       game_running: false,
     };
 
-    this.scoreEl = document.getElementById('score');
-    this.livesEl = document.getElementById('lives');
-    this.specialEl = document.getElementById('special');
-
-    this.playScreen = document.getElementById('play_screen');
-
     this.reset();
 
     this.music = new Audio(
       'https://opengameart.org/sites/default/files/Hero%20Immortal.mp3'
     );
+    this.music.volume = 0.1;
   }
+
   animation = null;
   Bullet = Bullet;
 
@@ -44,7 +40,7 @@ export class Game {
     this.status.game_running = true;
     this.music.play();
     this.music.loop = true;
-    this.playScreen.style.display = 'none';
+    this.screen.playScreen.style.display = 'none';
     this.control.specialBtn.style.pointerEvents = 'auto';
   }
 
@@ -97,9 +93,9 @@ export class Game {
   }
 
   elementsReset() {
-    this.specialEl.innerHTML = `🛡 ${this.player.specialShots}`;
-    this.livesEl.innerHTML = `❤ ${this.player.lives}`;
-    this.scoreEl.innerHTML = `💎 ${this.score}`;
+    this.screen.specialEl.innerHTML = `🛡 ${this.player.specialShots}`;
+    this.screen.livesEl.innerHTML = `❤ ${this.player.lives}`;
+    this.screen.scoreEl.innerHTML = `💎 ${this.score}`;
     this.screen.gameOverScore.innerHTML = `Your Score: ${this.score}`;
   }
 }

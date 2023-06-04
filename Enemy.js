@@ -25,7 +25,7 @@ export class Enemy {
   }
 
   update() {
-    let { cw, ch, score, player, livesEl } = this.game;
+    let { cw, ch, score, player } = this.game;
     this.enemies.forEach((enemy, i) => {
       enemy.draw();
       enemy.y += enemy.speed;
@@ -34,7 +34,9 @@ export class Enemy {
         this.enemies.splice(i, 1);
         player.lives--;
 
-        livesEl.innerHTML = `❤ ${player.lives === -1 ? 0 : player.lives}`;
+        this.game.screen.livesEl.innerHTML = `❤ ${
+          player.lives === -1 ? 0 : player.lives
+        }`;
       }
 
       if (score >= 10) {

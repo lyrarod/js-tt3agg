@@ -42,12 +42,14 @@ export class Bullet {
           enemy.y -= 10;
 
           if (enemy.health <= 0) {
+            enemies.splice(iEnemy, 1);
+
             this.game.score++;
-            this.game.scoreEl.innerHTML = `💎 ${this.game.score}`;
+            this.game.screen.scoreEl.innerHTML = `💎 ${this.game.score}`;
             this.game.screen.gameOverScore.innerHTML = `Your Score: ${this.game.score}`;
 
             if (
-              this.game.score === 20 ||
+              this.game.score === 15 ||
               this.game.score === 30 ||
               this.game.score === 40 ||
               this.game.score === 50 ||
@@ -56,10 +58,8 @@ export class Bullet {
               this.game.score === 80
             ) {
               this.game.player.specialShots++;
-              this.game.specialEl.innerHTML = `🛡 ${this.game.player.specialShots}`;
+              this.game.screen.specialEl.innerHTML = `🛡 ${this.game.player.specialShots}`;
             }
-
-            enemies.splice(iEnemy, 1);
           }
         }
       });

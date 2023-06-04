@@ -3,10 +3,13 @@ export class Player {
     this.game = game;
     this.cw = game.cw;
     this.ch = game.ch;
+
+    this.reset();
+
     this.laser = new Audio(
       'https://opengameart.org/sites/default/files/laser7.wav'
     );
-    this.reset();
+    this.laser.volume = 0.2;
   }
   width = 28;
   height = 10;
@@ -14,8 +17,8 @@ export class Player {
   color = 'lightgreen';
   frame = 0;
   timeToNextShoot = 10;
-  specialShots = 0;
   lives = 0;
+  specialShots = 0;
 
   reset() {
     this.x = this.cw * 0.5 - this.width * 0.5;
@@ -36,6 +39,13 @@ export class Player {
   update() {
     const { isShooting, moveLeft, moveRight, keyPressed } = this.game.control;
     const { Bullet, bullet } = this.game;
+
+    // if (isSpecialShooting && this.specialShots > 0) {
+    //   this.specialShots--;
+    //   this.game.enemy.enemies = [];
+    //   this.game.screen.specialEl.innerHTML = this.specialShots;
+    //   return;
+    // }
 
     if (isShooting && this.frame <= 0) {
       this.laser.currentTime = 0;
