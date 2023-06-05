@@ -63,17 +63,22 @@ export class Controls {
         }
       });
 
-      this.shoot_btn.addEventListener(e, () => {
+      let timer = null;
+      this.shoot_btn.addEventListener(e, (evt) => {
+        evt.preventDefault();
+        if (evt.repeat) return;
+
         if (e === 'mousedown' || e === 'touchstart') {
           // console.log('shot');
           this.isShooting = true;
 
-          setTimeout(() => {
+          timer = setTimeout(() => {
             this.isShooting = false;
-          }, 30);
+          }, 50);
         }
         if (e === 'touchend' || e === 'mouseup') {
           this.isShooting = false;
+          clearTimeout(timer);
         }
       });
 
