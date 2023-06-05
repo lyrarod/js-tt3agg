@@ -24,8 +24,8 @@ export class Player {
     this.x = this.cw * 0.5 - this.width * 0.5;
     this.y = this.ch - this.height - 5;
 
-    this.specialShots = 3;
     this.lives = 3;
+    this.specialShots = 3;
   }
 
   draw() {
@@ -40,29 +40,22 @@ export class Player {
     const { isShooting, moveLeft, moveRight, keyPressed } = this.game.control;
     const { Bullet, bullet } = this.game;
 
-    // if (isSpecialShooting && this.specialShots > 0) {
-    //   this.specialShots--;
-    //   this.game.enemy.enemies = [];
-    //   this.game.screen.specialEl.innerHTML = this.specialShots;
-    //   return;
+    // if (isShooting && this.frame <= 0) {
+    //   this.laser.currentTime = 0;
+    //   this.laser.play();
+
+    //   bullet.add(
+    //     new Bullet(
+    //       this.game,
+    //       this.x + this.width * 0.5 - bullet.width * 0.5,
+    //       this.y - bullet.height,
+    //       'orangered'
+    //     )
+    //   );
+    //   this.frame = this.timeToNextShoot;
+    //   //console.log(bullet.bullets.length);
     // }
-
-    if (isShooting && this.frame <= 0) {
-      this.laser.currentTime = 0;
-      this.laser.play();
-
-      bullet.add(
-        new Bullet(
-          this.game,
-          this.x + this.width * 0.5 - bullet.width * 0.5,
-          this.y - bullet.height,
-          'orangered'
-        )
-      );
-      this.frame = this.timeToNextShoot;
-      //console.log(bullet.bullets.length);
-    }
-    this.frame--;
+    // this.frame--;
 
     if ((moveLeft || keyPressed.ArrowLeft) && this.x > 0) {
       this.x -= this.speed;

@@ -4,16 +4,31 @@ export class Controls {
   constructor(game) {
     this.game = game;
     this.keyPressed = {};
+    this.lastEvent = null;
+
+    const { player, enemy, Bullet, bullet } = this.game;
 
     this.reset();
 
     addEventListener('keydown', ({ code }) => {
+      if (this.lastEvent === code) return;
+      this.lastEvent = code;
       this.keyPressed[code] = true;
 
-      if (this.keyPressed.Space) {
-        this.isShooting = true;
-      }
+      if (this.keyPressed.Space && this.lastEvent === 'Space') {
+        // this.isShooting = true;
+        this.game.player.laser.currentTime = 0;
+        this.game.player.laser.play();
 
+        bullet.add(
+          new Bullet(
+            this.game,
+            player.x + player.width * 0.5 - bullet.width * 0.5,
+            player.y - bullet.height,
+            'orangered'
+          )
+        );
+      }
       console.log(this.keyPressed);
 
       if (this.game.status.game_running) return;
@@ -27,13 +42,14 @@ export class Controls {
 
     addEventListener('keyup', ({ code }) => {
       this.keyPressed[code] = false;
+      console.log(this.keyPressed);
 
-      if (!this.keyPressed.Space) {
-        this.isShooting = false;
-      }
+      // if (!this.keyPressed.Space) {
+      //   this.isShooting = false;
+      // }
 
+      this.lastEvent = null;
       delete this.keyPressed[code];
-
       console.log(this.keyPressed);
     });
 
@@ -45,7 +61,7 @@ export class Controls {
     // SPECIAL SHOOTING
     this.specialBtn = document.getElementById('special_btn');
 
-    let { player, enemy } = this.game;
+    // let { player, enemy } = this.game;
 
     this.specialBtn.onclick = () => {
       if (player.specialShots > 0) {
