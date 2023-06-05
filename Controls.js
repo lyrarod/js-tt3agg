@@ -6,7 +6,7 @@ export class Controls {
     this.keyPressed = {};
     this.lastEvent = null;
 
-    const { player, enemy, Bullet, bullet } = this.game;
+    const { player, enemy } = this.game;
 
     this.reset();
 
@@ -16,24 +16,14 @@ export class Controls {
       this.keyPressed[code] = true;
 
       if (this.keyPressed.Space && this.lastEvent === 'Space') {
-        // this.isShooting = true;
-        this.game.player.laser.currentTime = 0;
-        this.game.player.laser.play();
-
-        bullet.add(
-          new Bullet(
-            this.game,
-            player.x + player.width * 0.5 - bullet.width * 0.5,
-            player.y - bullet.height,
-            'orangered'
-          )
-        );
+        this.game.player.shoot();
       }
-      console.log(this.keyPressed);
+      // console.log(this.lastEvent)
+      // console.log(this.keyPressed);
 
       if (this.game.status.game_running) return;
 
-      if (code === 'Enter') {
+      if (this.lastEvent === 'Enter') {
         this.game.reset();
         this.game.start();
         this.game.screen.gameOver.style.display = 'none';
@@ -42,15 +32,10 @@ export class Controls {
 
     addEventListener('keyup', ({ code }) => {
       this.keyPressed[code] = false;
-      console.log(this.keyPressed);
-
-      // if (!this.keyPressed.Space) {
-      //   this.isShooting = false;
-      // }
-
+      // console.log(this.keyPressed);
       this.lastEvent = null;
       delete this.keyPressed[code];
-      console.log(this.keyPressed);
+      // console.log(this.keyPressed);
     });
 
     this.left_btn = document.getElementById('left_btn');
@@ -58,10 +43,8 @@ export class Controls {
     this.shoot_btn = document.getElementById('shoot_btn');
     this.play_btn = document.getElementById('play_btn');
 
-    // SPECIAL SHOOTING
+    // SPECIAL SHOOT
     this.specialBtn = document.getElementById('special_btn');
-
-    // let { player, enemy } = this.game;
 
     this.specialBtn.onclick = () => {
       if (player.specialShots > 0) {
@@ -79,22 +62,13 @@ export class Controls {
         }
       });
 
-      let timer = null;
-      this.shoot_btn.addEventListener(e, (evt) => {
-        evt.preventDefault();
-        if (evt.repeat) return;
-
+      this.shoot_btn.addEventListener(e, () => {
         if (e === 'mousedown' || e === 'touchstart') {
           // console.log('shot');
-          this.isShooting = true;
-
-          timer = setTimeout(() => {
-            this.isShooting = false;
-          }, 50);
+          this.game.player.shoot();
         }
         if (e === 'touchend' || e === 'mouseup') {
-          this.isShooting = false;
-          clearTimeout(timer);
+          return null;
         }
       });
 
@@ -121,6 +95,5 @@ export class Controls {
   reset() {
     this.moveLeft = false;
     this.moveRight = false;
-    this.isShooting = false;
   }
 }
