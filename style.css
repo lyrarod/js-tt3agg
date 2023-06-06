@@ -10,6 +10,7 @@
   border-block: 1px solid lightgreen;
 }
 
+#shoot_btn,
 #special_btn {
   pointer-events: none;
 }
@@ -111,6 +112,19 @@
   padding: 1rem;
 }
 
+#press_enter {
+  display: none;
+}
+
+@media (min-width: 460px) {
+  #control {
+    display: none;
+  }
+  #press_enter {
+    display: flex;
+  }
+}
+
 #control button {
   user-select: none;
   width: 70px;
@@ -132,9 +146,4 @@
 
 #control button:active {
   transform: scale(0.97) !important;
-}
-
-#canvas {
-  /* width: 360px;
-  height: 340px; */
 }

@@ -28,6 +28,7 @@ export class Screen {
 
   gameOverScreen() {
     this.gameOver.style.display = 'flex';
+    this.game.control.shoot_btn.style.pointerEvents = 'none';
     this.game.control.specialBtn.style.pointerEvents = 'none';
   }
 }

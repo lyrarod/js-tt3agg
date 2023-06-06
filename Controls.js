@@ -63,12 +63,9 @@ export class Controls {
       });
 
       this.shoot_btn.addEventListener(e, () => {
-        if (e === 'mousedown' || e === 'touchstart') {
+        if (e === 'touchstart') {
           // console.log('shot');
           this.game.player.shoot();
-        }
-        if (e === 'touchend' || e === 'mouseup') {
-          return null;
         }
       });
 

@@ -41,6 +41,7 @@ export class Game {
     this.music.play();
     this.music.loop = true;
     this.screen.playScreen.style.display = 'none';
+    this.control.shoot_btn.style.pointerEvents = 'auto';
     this.control.specialBtn.style.pointerEvents = 'auto';
   }
 
