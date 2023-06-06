@@ -18,8 +18,6 @@ export class Controls {
       if (this.keyPressed.Space && this.lastEvent === 'Space') {
         this.game.player.shoot();
       }
-      // console.log(this.lastEvent)
-      // console.log(this.keyPressed);
 
       if (this.game.status.game_running) return;
 
@@ -32,10 +30,8 @@ export class Controls {
 
     addEventListener('keyup', ({ code }) => {
       this.keyPressed[code] = false;
-      // console.log(this.keyPressed);
       this.lastEvent = null;
       delete this.keyPressed[code];
-      // console.log(this.keyPressed);
     });
 
     this.left_btn = document.getElementById('left_btn');
@@ -64,7 +60,6 @@ export class Controls {
 
       this.shoot_btn.addEventListener(e, () => {
         if (e === 'touchstart') {
-          // console.log('shot');
           this.game.player.shoot();
         }
       });
